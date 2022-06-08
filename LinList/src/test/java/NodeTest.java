@@ -1,3 +1,7 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.notification.RunListener;
+
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +11,7 @@ class NodeTest {
 
 
 
-    @org.junit.jupiter.api.Test()
+    @Test
     void getTest() throws ListException {
 
         Node node = new Node();
@@ -18,17 +22,30 @@ class NodeTest {
         });
         assertNotNull(thrown.getMessage());
     }
-    
-//    @org.junit.jupiter.api.Test
-//    void removeTest() {
-//        Node node = new Node();
-//        node.Add(15);
-//        node.Add(20);
-//        node.remove(20);
-//
-//    }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void getTest1() throws ListException {
+        Node node = new Node();
+        node.Add(15);
+        node.Add(20);
+
+        Object n = node.get(1,2);
+        assertEquals(20, n);
+
+
+    }
+
+    @Test
+    void getTest2() throws ListException{
+        Node node = new Node();
+        Throwable thrown = assertThrows(ListException.class, () -> {
+            node.get(0, 0);
+        });
+        assertNotNull(thrown.getMessage());
+    }
+
+
+    @Test
     void addTest() {
         Node node = new Node();
         node.Add(15);
@@ -37,8 +54,8 @@ class NodeTest {
         assertEquals(2, node.size());
     }
 
-    @org.junit.jupiter.api.Test
-    void removeTest1() {
+    @Test
+    void removeTest1() throws ListException {
         Node node = new Node();
         node.Add(15);
         node.Add(20);
@@ -47,7 +64,18 @@ class NodeTest {
         assertEquals(0, node.size());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void removeTest2() throws ListException {
+        Node node = new Node();
+        Throwable thrown = assertThrows(ListException.class, () -> {
+            node.remove(15);
+        });
+        assertNotNull(thrown.getMessage());
+
+
+    }
+
+    @Test
     void sizeTest() {
         Node node = new Node();
         node.Add(15);

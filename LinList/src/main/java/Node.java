@@ -25,7 +25,7 @@ public class Node {
 
         LinkList tmp = head;
         if (tmp == null) {
-            System.out.println("List is empty");
+            throw new ListException("List is empty");
         } else {
             int i = 0;
             while (i != number && tmp.next != null) {
@@ -42,7 +42,7 @@ public class Node {
     }
 
 
-    public  void remove(Object data) {
+    public  void remove(Object data) throws ListException {
 
         LinkList tmp = head;
         if (tmp != null) {
@@ -62,7 +62,7 @@ public class Node {
                 }
             }
         } else {
-            System.out.println("list is empty");
+            throw new ListException("list is empty");
         }
 
     }
