@@ -1,6 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Type;
-import java.net.Proxy;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -11,15 +9,9 @@ public class HashTest {
 
     public static void main(String[] args) throws IOException {
       try {
-          File file = new File("C:\\Users\\User\\IdeaProjects\\build-test\\HashMapTest\\src\\Text.txt");
-          FileReader fr = new FileReader(file);
-          BufferedReader reader = new BufferedReader(fr);
-          String line = reader.readLine();
-          String content = Files.lines(Paths.get("C:\\Users\\User\\IdeaProjects\\build-test\\HashMapTest\\src\\Text.txt")).reduce("", String::concat);
+          File file = new File(args[0]);
+          String content = Files.lines(Paths.get(String.valueOf(file))).reduce("", String::concat);
 
-//          File file = new File("C:\\Users\\User\\IdeaProjects\\build-test\\HashMapTest\\src\\Text.txt");
-//          FileReader fr = new FileReader(file);
-//          int ch;
           Map<String, Integer> dict= new HashMap<> ();
 
           String str = " ";
