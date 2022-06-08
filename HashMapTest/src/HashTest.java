@@ -9,37 +9,41 @@ public class HashTest {
 
     public static void main(String[] args) throws IOException {
       try {
-          File file = new File(args[0]);
-          String content = Files.lines(Paths.get(String.valueOf(file))).reduce("", String::concat);
+          if ( args.length == 0 ) {
+              System.out.println( " [ Ошибка ] Формат: java -jar Main.java <Имя сканируемого файла> " ) ;
+          }else {
+              File file = new File(args[0]);
+              String content = Files.lines(Paths.get(String.valueOf(file))).reduce("", String::concat);
 
-          Map<String, Integer> dict= new HashMap<> ();
+              Map<String, Integer> dict = new HashMap<>();
 
-          String str = " ";
+              String str = " ";
 
-          String[] words = content.split("\\W");
+              String[] words = content.split("\\W");
 
 
-          for (String word : words){
-              str = word.toLowerCase();
-              if(dict.keySet().contains(str)) {
-                  dict.put(str, dict.get(str) + 1);
+              for (String word : words) {
+                  str = word.toLowerCase();
+                  if (dict.keySet().contains(str)) {
+                      dict.put(str, dict.get(str) + 1);
 
-              } else {
-                  if (str != " ") {
-                      dict.put(str, 1);
+                  } else {
+                      if (str != " ") {
+                          dict.put(str, 1);
+                      }
                   }
               }
-          }
 
-          for(Map.Entry<String, Integer> item : dict.entrySet()){
+              for (Map.Entry<String, Integer> item : dict.entrySet()) {
 
-              System.out.printf("Key: %s  Value: %s \n", item.getKey(), item.getValue());
-          }
-          Map<String, Integer> map = new TreeMap<>(dict);
-          System.out.println(" ");
-          System.out.println("Отсартированный Map");
-          for(String ke: map.keySet()){
-              System.out.println("Key: "+ ke + " Value : " +map.get(ke));
+                  System.out.printf("Key: %s  Value: %s \n", item.getKey(), item.getValue());
+              }
+              Map<String, Integer> map = new TreeMap<>(dict);
+              System.out.println(" ");
+              System.out.println("Отсартированный Map");
+              for (String ke : map.keySet()) {
+                  System.out.println("Key: " + ke + " Value : " + map.get(ke));
+              }
           }
 
 
